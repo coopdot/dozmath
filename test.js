@@ -1,6 +1,6 @@
 // Import dozmath.js first.
 
-var version = 0.0001;
+var version = 0.0002;
 	// Version 0.0.1 == 0.0001, 0.1.2 == 0.0102
 var results = [], run_tests = 0, passing = 0, failing = "";
 
@@ -22,6 +22,46 @@ if (version >= 0.0001) {
 
 	var fail_random_string = new dozmath("random string");
 	results["fail_random_string"] = (fail_random_string.raw === null);
+}
+if (version >= 0.0002) {
+	var pass_negative_numbers = new dozmath("-123");
+	results["pass_negative_numbers"] = (pass_negative_numbers.raw === "-123");
+
+	var fail_hyphened_numbers = new dozmath("12-3");
+	results["fail_hyphened_numbers"] = (fail_hyphened_numbers.raw === null);
+
+	var fail_extended_minus = new dozmath("--123");
+	results["fail_extended_minus"] = (fail_extended_minus.raw === null);
+}
+if (version >= 0.0003) {
+	;
+	// Up minor version?
+}
+if (version >= 0.01) { // ...or earlier.
+	// Can output in decimal (number).
+	// Allow E, T, X and Z as digits.
+	// Floating point (string) support:
+	var pass_floating_point = new dozmath("1.23");
+	results["pass_floating_point"] = (pass_floating_point.raw === "1.23");
+
+	var fail_ending_period = new dozmath("123.");
+	results["fail_ending_period"] = (fail_ending_period.raw === null);
+
+	var fail_starting_period = new dozmath(".123");
+	results["fail_starting_period"] = (fail_starting_period.raw === null);
+
+	var fail_extended_period = new dozmath("1..23");
+	results["fail_extended_period"] = (fail_extended_period.raw === null);
+}
+if (version >= 0.02) { // ...or earlier.
+	;
+	// Can output as (string) fraction.
+	// Can add and subtract.
+}
+if (version >= 0.03) { // ...or earlier.
+	;
+	// Unicode support.
+	// HTML support.
 }
 
 for (result in results) {

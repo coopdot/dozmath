@@ -11,9 +11,8 @@ class dozmath {
 		if (this.is_parsed !== true) {
 			let dozenal = this.canonical;
 			if (typeof dozenal === "string" &&
-				/^[0-9ab]+$/.test(dozenal) === true) {
+				/^[-]?[0-9ab]+$/.test(dozenal) === true) {
 				this.is_valid = true;
-				this.canonical = dozenal;
 			} 
 			this.is_parsed = true;
 		}
