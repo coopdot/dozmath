@@ -1,6 +1,6 @@
 // Import dozmath.js first.
 
-var version = 0.0003;
+var version = 0.0004;
 	// Version 0.0.1 == 0.0001, 0.1.2 == 0.0102
 var results = [], run_tests = 0, passing = 0, failing = "";
 
