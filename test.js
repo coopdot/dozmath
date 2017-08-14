@@ -1,6 +1,6 @@
 // Import dozmath.js first.
 
-var version = 0.0002;
+var version = 0.0003;
 	// Version 0.0.1 == 0.0001, 0.1.2 == 0.0102
 var results = [], run_tests = 0, passing = 0, failing = "";
 
@@ -34,12 +34,28 @@ if (version >= 0.0002) {
 	results["fail_extended_minus"] = (fail_extended_minus.raw === null);
 }
 if (version >= 0.0003) {
+	var pass_output_decimal = new dozmath("40");
+	results["pass_output_decimal"] = (pass_output_decimal.decimal === 48);
+}
+if (version >= 0.0004) {
 	;
 	// Up minor version?
 }
 if (version >= 0.01) { // ...or earlier.
-	// Can output in decimal (number).
 	// Allow E, T, X and Z as digits.
+	var pass_t_as_dec = new dozmath("T");
+	results["pass_t_as_dec"] = (pass_t_as_dec.raw === "a");
+
+	var pass_x_as_dec = new dozmath("X");
+	results["pass_x_as_dec"] = (pass_x_as_dec.raw === "a");
+
+	var pass_z_as_dec = new dozmath("Z");
+	results["pass_z_as_dec"] = (pass_z_as_dec.raw === "a");
+
+	var pass_e_as_el = new dozmath("E");
+	results["pass_e_as_el"] = (pass_e_as_el.raw === "b");
+	// Not testing different cases for digits.
+
 	// Floating point (string) support:
 	var pass_floating_point = new dozmath("1.23");
 	results["pass_floating_point"] = (pass_floating_point.raw === "1.23");

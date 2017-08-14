@@ -7,6 +7,10 @@ class dozmath {
 		this.is_valid = false;
 	}
 
+	get decimal() {
+		let dozenal = this.canonical;
+		return parseInt(dozenal, 12);
+	}
 	get raw() {
 		if (this.is_parsed !== true) {
 			let dozenal = this.canonical;
