@@ -7,11 +7,7 @@ class dozmath {
 		this.is_valid = false;
 	}
 
-	get decimal() {
-		let dozenal = this.canonical;
-		return parseInt(dozenal, 12);
-	}
-	get raw() {
+	parse() {
 		if (this.is_parsed !== true) {
 			let dozenal = this.canonical;
 			if (typeof dozenal === "string" &&
@@ -20,6 +16,19 @@ class dozmath {
 			} 
 			this.is_parsed = true;
 		}
+	}
+
+	get decimal() {
+		parse();
+		if (this.is_valid === true) {
+			return parseInt(this.canonical, 12);
+		} else {
+			return null;
+		}
+	}
+
+	get raw() {
+		parse();
 		if (this.is_valid === true) {
 			return this.canonical;
 		} else {

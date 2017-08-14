@@ -38,11 +38,6 @@ if (version >= 0.0003) {
 	results["pass_output_decimal"] = (pass_output_decimal.decimal === 48);
 }
 if (version >= 0.0004) {
-	;
-	// Up minor version?
-}
-if (version >= 0.01) { // ...or earlier.
-	// Allow E, T, X and Z as digits.
 	var pass_t_as_dec = new dozmath("T");
 	results["pass_t_as_dec"] = (pass_t_as_dec.raw === "a");
 
@@ -55,7 +50,13 @@ if (version >= 0.01) { // ...or earlier.
 	var pass_e_as_el = new dozmath("E");
 	results["pass_e_as_el"] = (pass_e_as_el.raw === "b");
 	// Not testing different cases for digits.
-
+}
+if (version >= 0.0005) {
+	;
+	// Up minor version?
+}
+if (version >= 0.01) { // ...or earlier.
+	// Reject mixed digits. ("Tax" == error.)
 	// Floating point (string) support:
 	var pass_floating_point = new dozmath("1.23");
 	results["pass_floating_point"] = (pass_floating_point.raw === "1.23");
