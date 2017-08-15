@@ -1,6 +1,6 @@
 // Import dozmath.js first.
 
-var version = 0.0004;
+var version = 0.0005;
 	// Version 0.0.1 == 0.0001, 0.1.2 == 0.0102
 var results = [], run_tests = 0, passing = 0, failing = "";
 
@@ -52,12 +52,6 @@ if (version >= 0.0004) {
 	// Not testing different cases for digits.
 }
 if (version >= 0.0005) {
-	;
-	// Up minor version?
-}
-if (version >= 0.01) { // ...or earlier.
-	// Reject mixed digits. ("Tax" == error.)
-	// Floating point (string) support:
 	var pass_floating_point = new dozmath("1.23");
 	results["pass_floating_point"] = (pass_floating_point.raw === "1.23");
 
@@ -69,6 +63,15 @@ if (version >= 0.01) { // ...or earlier.
 
 	var fail_extended_period = new dozmath("1..23");
 	results["fail_extended_period"] = (fail_extended_period.raw === null);
+
+	var pass_decimal_float= new dozmath("40.6");
+	results["pass_decimal_float"] = (pass_decimal_float.decimal === 48.5);
+}
+if (version >= 0.01) { // ...or earlier.
+	;
+	// Allow other radix points.
+	// Reject mixed digits. ("Tax" == error.)
+	// Up minor version?
 }
 if (version >= 0.02) { // ...or earlier.
 	;

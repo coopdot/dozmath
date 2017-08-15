@@ -6,6 +6,12 @@ class dozmath {
 		this.is_parsed = false;
 		this.is_valid = false;
 
+		// Number parts.
+		this.integer_part = "0";
+			// The number 3/2 -> "1".
+		this.floating_part = "0";
+			// The number 3/2 -> "6" because 0.6 == 1/2.
+
 		this.dec_digits = "TaAtXxZz";
 		// parseInt() use "a" for dec (ten) and so will we for internal use.
 		this.el_digits = "EbBe";
@@ -18,7 +24,14 @@ class dozmath {
 			if (typeof dozenal === "string") {
 				dozenal = dozenal.replace(new RegExp("[" + this.dec_digits + "]", "g"), "a");
 				dozenal = dozenal.replace(new RegExp("[" + this.el_digits + "]", "g"), "b");
-				if (/^[-]?[0-9ab]+$/.test(dozenal) === true) {
+				let matched_dozenal = /^([-]?[0-9ab]+)(?:\.(?=[0-9ab]))?([0-9ab]*)$/.exec(dozenal);
+				if (matched_dozenal !== null) {
+					this.integer_part = matched_dozenal[1];
+					if (matched_dozenal[2] !== "") {
+						this.floating_part = matched_dozenal[2];
+					} else {
+						this.floating_part = "0";
+					}
 					this.canonical = dozenal;
 					this.is_valid = true;
 				}
@@ -30,7 +43,11 @@ class dozmath {
 	get decimal() {
 		this.parse();
 		if (this.is_valid === true) {
-			return parseInt(this.canonical, 12);
+			if (this.floating_part !== "0") {
+				return parseInt(this.integer_part, 12) + parseInt(this.floating_part, 12) / (12 ** this.floating_part.length);
+			} else {
+				return parseInt(this.integer_part, 12);
+			}
 		} else {
 			return null;
 		}
