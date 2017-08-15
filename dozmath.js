@@ -16,6 +16,7 @@ class dozmath {
 		// parseInt() use "a" for dec (ten) and so will we for internal use.
 		this.el_digits = "EbBe";
 		// parseInt() use "b" for el (eleven) and so will we for internal use.
+		this.radix_points = ".,:;";
 	}
 
 	parse() {
@@ -24,6 +25,7 @@ class dozmath {
 			if (typeof dozenal === "string") {
 				dozenal = dozenal.replace(new RegExp("[" + this.dec_digits + "]", "g"), "a");
 				dozenal = dozenal.replace(new RegExp("[" + this.el_digits + "]", "g"), "b");
+				dozenal = dozenal.replace(new RegExp("[" + this.radix_points + "]", "g"), ".");
 				let matched_dozenal = /^([-]?[0-9ab]+)(?:\.(?=[0-9ab]))?([0-9ab]*)$/.exec(dozenal);
 				if (matched_dozenal !== null) {
 					this.integer_part = matched_dozenal[1];

@@ -1,6 +1,6 @@
 // Import dozmath.js first.
 
-var version = 0.0005;
+var version = 0.0006;
 	// Version 0.0.1 == 0.0001, 0.1.2 == 0.0102
 var results = [], run_tests = 0, passing = 0, failing = "";
 
@@ -67,9 +67,18 @@ if (version >= 0.0005) {
 	var pass_decimal_float= new dozmath("40.6");
 	results["pass_decimal_float"] = (pass_decimal_float.decimal === 48.5);
 }
+if (version >= 0.0006) {
+	var pass_comma_as_point = new dozmath("48,6");
+	results["pass_comma_as_point"] = (pass_comma_as_point.raw === "48.6");
+
+	var pass_colon_as_point = new dozmath("48:6");
+	results["pass_colon_as_point"] = (pass_colon_as_point.raw === "48.6");
+
+	var pass_semi_colon_as_point = new dozmath("48;6");
+	results["pass_semi_colon_as_point"] = (pass_semi_colon_as_point.raw === "48.6");
+}
 if (version >= 0.01) { // ...or earlier.
 	;
-	// Allow other radix points.
 	// Reject mixed digits. ("Tax" == error.)
 	// Up minor version?
 }
